@@ -1,0 +1,82 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: python -m iris_ml.datasets.prepare
+    deps:
+    - path: data/raw/iris.csv
+      hash: md5
+      md5: 500a0acbd112b7c512929eac892f9864
+      size: 4009
+    - path: iris_ml/common.py
+      hash: md5
+      md5: 295347353f4c726ed5da3af0c2e99af0
+      size: 505
+    - path: iris_ml/datasets/prepare.py
+      hash: md5
+      md5: e0aa1f6eaaaeeeaf18cbc81349bbb490
+      size: 2962
+    - path: requirements-api.txt
+      hash: md5
+      md5: 2bca640be0ece5f7bdaed703e447da49
+      size: 126
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: df79693fb55d1c9d6dd9445d605351f7
+      size: 849
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 339d67b00e9f22191ecb1101830fbd39
+      size: 3192
+    - path: metrics/data_quality.json
+      hash: md5
+      md5: c509cda873ec96c1dd79cca870697205
+      size: 724
+  train:
+    cmd: python -m iris_ml.models.train
+    deps:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: df79693fb55d1c9d6dd9445d605351f7
+      size: 849
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 339d67b00e9f22191ecb1101830fbd39
+      size: 3192
+    - path: iris_ml/common.py
+      hash: md5
+      md5: 295347353f4c726ed5da3af0c2e99af0
+      size: 505
+    - path: iris_ml/models/train.py
+      hash: md5
+      md5: 6f21b1ae412c93ac6edba126240083ab
+      size: 2938
+    - path: metrics/data_quality.json
+      hash: md5
+      md5: c509cda873ec96c1dd79cca870697205
+      size: 724
+    - path: requirements-api.txt
+      hash: md5
+      md5: 2bca640be0ece5f7bdaed703e447da49
+      size: 126
+    - path: requirements.txt
+      hash: md5
+      md5: 70028d0371579ff01b17a2c731efa89a
+      size: 193
+    outs:
+    - path: metrics/evaluation.json
+      hash: md5
+      md5: b29fee2cc6f0d7c053c65a0039ff37f7
+      size: 1016
+    - path: metrics/metrics.json
+      hash: md5
+      md5: c57dd2e89a75372665eb758f7487453e
+      size: 73
+    - path: models/metadata.json
+      hash: md5
+      md5: 02c247d72ae730da8a5ad372a9da6765
+      size: 540
+    - path: models/model.joblib
+      hash: md5
+      md5: 8e3000b956f6afa0a3a3f318d20fd24c
+      size: 2578

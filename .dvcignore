@@ -1,0 +1,4 @@
+# Local experiment history is not a pipeline input.
+mlruns
+logs
+.venv

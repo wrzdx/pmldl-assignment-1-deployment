@@ -1,0 +1,36 @@
+stages:
+  prepare:
+    cmd: python -m iris_ml.datasets.prepare
+    deps:
+      - data/raw/iris.csv
+      - iris_ml/common.py
+      - iris_ml/datasets/prepare.py
+      - requirements-api.txt
+    outs:
+      - data/processed/train.csv:
+          cache: false
+      - data/processed/test.csv:
+          cache: false
+    metrics:
+      - metrics/data_quality.json:
+          cache: false
+  train:
+    cmd: python -m iris_ml.models.train
+    deps:
+      - data/processed/train.csv
+      - data/processed/test.csv
+      - metrics/data_quality.json
+      - iris_ml/common.py
+      - iris_ml/models/train.py
+      - requirements.txt
+      - requirements-api.txt
+    outs:
+      - models/model.joblib:
+          cache: false
+      - models/metadata.json:
+          cache: false
+      - metrics/evaluation.json:
+          cache: false
+    metrics:
+      - metrics/metrics.json:
+          cache: false

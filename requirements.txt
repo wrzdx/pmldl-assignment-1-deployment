@@ -1,0 +1,9 @@
+-r requirements-api.txt
+-r requirements-app.txt
+dvc==3.59.1
+# DVC 3.59 imports the pre-1.0 gitwildmatch API.
+pathspec==0.12.1
+mlflow-skinny==2.22.0
+filelock==3.18.0
+pytest==8.3.5
+httpx==0.28.1

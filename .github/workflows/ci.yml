@@ -1,0 +1,30 @@
+name: Validate pipeline
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - run: python -m pytest -q
+      - run: python pipeline.py --once
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: pipeline-evidence
+          path: |
+            metrics/*.json
+            models/metadata.json
+            logs/
+      - if: always()
+        run: docker compose -f iris_ml/deployment/docker-compose.yml down

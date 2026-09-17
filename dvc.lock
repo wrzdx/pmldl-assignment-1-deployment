@@ -5,8 +5,8 @@ stages:
     deps:
     - path: data/raw/iris.csv
       hash: md5
-      md5: 500a0acbd112b7c512929eac892f9864
-      size: 4009
+      md5: 013d0da08d6506664ce640459139176b
+      size: 3858
     - path: iris_ml/common.py
       hash: md5
       md5: 295347353f4c726ed5da3af0c2e99af0
@@ -74,9 +74,9 @@ stages:
       size: 73
     - path: models/metadata.json
       hash: md5
-      md5: 02c247d72ae730da8a5ad372a9da6765
+      md5: 6e611cec2cf93288991e08344d64566f
       size: 540
     - path: models/model.joblib
       hash: md5
-      md5: 8e3000b956f6afa0a3a3f318d20fd24c
+      md5: ef78670222e33a9616cf6ffdd68dee93
       size: 2578
